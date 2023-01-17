@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
 def index(request):
-    name = request.GET.get("name") or "Świecie"
-    return render(request, "base.html", {"name": name, "name2":"Anna"})
+    return render(request, "base.html")
 
+def book_search(request):
+    search = request.GET.get("search")
+    return render(request, "searchresults.html", {"search":search})
