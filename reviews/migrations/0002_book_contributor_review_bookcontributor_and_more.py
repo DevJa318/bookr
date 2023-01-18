@@ -26,8 +26,8 @@ class Migration(migrations.Migration):
             name='Contributor',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(help_text='Imię lub imiona autora', max_length=50)),
-                ('last_name', models.CharField(help_text='Nazwisko bądź nazwiska autora', max_length=50)),
+                ('first_names', models.CharField(help_text='Imię lub imiona autora', max_length=50)),
+                ('last_names', models.CharField(help_text='Nazwisko bądź nazwiska autora', max_length=50)),
                 ('email', models.EmailField(help_text='Email autora', max_length=254)),
             ],
         ),
