@@ -23,12 +23,21 @@ class Book(models.Model):
         return self.title
 
 class Contributor(models.Model):
+
+    def initialled_name(self):
+        """
+        self.first_name="Jeronime Dawid",
+        self.last_name="Salinger"=>"Salinger,JD"
+        """
+        initials= ' '.join([name[0] for name in self.first_names.split(' ')])
+        return "{}, {}".format(self.last_names, initials)
+
     first_names = models.CharField(max_length=50, help_text="Imię lub imiona autora")
     last_names = models.CharField(max_length=50, help_text="Nazwisko bądź nazwiska autora")
     email = models.EmailField(help_text="Email autora")
 
     def __str__(self):
-        return self.first_names
+        return self.initialled_name()
 
 class BookContributor(models.Model):
     class ContributorRole(models.TextChoices):
@@ -37,7 +46,7 @@ class BookContributor(models.Model):
         EDITOR = "EDITOR", "Editor"
 
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    contributor = models.ForeignKey(Contributor, on_delete=models.CASCADE)
+    contributor = models.ForeignKey(Contributor, on_delete=models.PROTECT)
     role = models.CharField(verbose_name="Rola jaką współtwórca odegrał przy tworzeniu tej książki",
                             choices=ContributorRole.choices, max_length=20)
 
