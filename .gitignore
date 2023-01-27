@@ -1,4 +1,4 @@
 db.sqlite3
 **/__pycache__/
 .idea/
-templates/example.html
+reviews/templates/reviews/example.html
